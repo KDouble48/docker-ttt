@@ -16,19 +16,9 @@ function configReplace() {
 	
 	count=$(grep -Poc "($source).+" "${CFG_PATH}")
 	
-	echo "[initConfig.sh]Request for replacing $source to $target, source is found $count times"
-	
-	if [ "$count" == "1" ]; then
-		sed -Ei "/${source}.*/d" "${CFG_PATH}"
-		echo "$source $target" >> "${CFG_PATH}"
-		
-	elif [ "$count" == "0" ]; then
-		echo "" >> "${CFG_PATH}"
-		echo "$source $target" >> "${CFG_PATH}"
-		
-	else
-		echo "[initConfig.sh]can't set $1 because there are multiple in"
-	fi
+	sed -Ei "/${source}.*/d" "${CFG_PATH}"
+	echo "" >> "${CFG_PATH}"
+	echo "$source $target" >> "${CFG_PATH}"
 }
 
 #create default server.config
